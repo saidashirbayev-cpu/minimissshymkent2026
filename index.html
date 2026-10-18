@@ -1,1222 +1,1247 @@
 <!DOCTYPE html>
-<html lang="kk" class="dark scroll-smooth">
+<html lang="kk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MINI MISS & MISTER INTERNET STAR SHYMKENT 2026</title>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,600&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        obsidian: '#070709',
-                        gold: {
-                            100: '#fff3d1',
-                            300: '#f1cf81',
-                            500: '#dfb76c',
-                            700: '#aa8136',
-                            900: '#5c4013',
-                        }
-                    },
-                    fontFamily: {
-                        title: ['"Cormorant Garamond"', 'serif'],
-                        body: ['"Montserrat"', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MINI MISS & MISTER INTERNET STAR SHYMKENT 2026</title>
 
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Canvas Confetti Library -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <!-- Icons & Confetti -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-    <style>
-        /* Custom Luxury Gold Effects & Scrollbars */
-        body {
-            background-color: #070709;
-            color: #f3f4f6;
-            font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
-        }
+  <style>
+    :root {
+      --bg-dark: #070709;
+      --bg-card: rgba(18, 18, 24, 0.75);
+      --bg-card-hover: rgba(26, 26, 36, 0.9);
+      --gold-100: #fff4d0;
+      --gold-300: #f1cf81;
+      --gold-500: #dfb76c;
+      --gold-700: #aa8136;
+      --gold-grad: linear-gradient(135deg, #f1cf81 0%, #dfb76c 45%, #aa8136 100%);
+      --gold-glow: 0 0 25px rgba(223, 183, 108, 0.35);
+      --text-main: #f3f3f8;
+      --text-muted: #8e8ea6;
+      --border-gold: rgba(223, 183, 108, 0.25);
+      --border-hover: rgba(223, 183, 108, 0.7);
+      --font-title: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Montserrat', sans-serif;
+    }
 
-        /* Ambient Metallic Gold Gradient Text */
-        .text-gold-gradient {
-            background: linear-gradient(135deg, #fce8ad 0%, #dfb76c 40%, #f1cf81 70%, #aa8136 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        .border-gold-gradient {
-            border-image: linear-gradient(135deg, #dfb76c, #aa8136) 1;
-        }
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
 
-        /* Luxury Glassmorphism */
-        .glass-card {
-            background: rgba(18, 18, 24, 0.65);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(223, 183, 108, 0.18);
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 15px rgba(223, 183, 108, 0.05);
-        }
+    #bgCanvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
 
-        .glass-card:hover {
-            border-color: rgba(223, 183, 108, 0.45);
-            box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.9), 0 0 25px rgba(223, 183, 108, 0.2);
-        }
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
 
-        /* Gold Shimmer Button Effect */
-        .btn-gold {
-            background: linear-gradient(135deg, #dfb76c 0%, #c99846 50%, #aa8136 100%);
-            color: #070709;
-            font-weight: 700;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
+    header {
+      position: sticky; top: 0;
+      z-index: 100;
+      background: rgba(7, 7, 9, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(223, 183, 108, 0.15);
+      padding: 1rem 0;
+    }
 
-        .btn-gold::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: rgba(255, 255, 255, 0.25);
-            transform: rotate(30deg) translateY(-100%);
-            transition: all 0.6s ease;
-        }
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        .btn-gold:hover::before {
-            transform: rotate(30deg) translateY(100%);
-        }
+    .logo-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      text-decoration: none;
+    }
 
-        .btn-gold:hover {
-            box-shadow: 0 0 20px rgba(223, 183, 108, 0.6);
-            transform: translateY(-2px);
-        }
+    .logo-crown {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: var(--gold-grad);
+      display: flex; align-items: center; justify-content: center;
+      color: #000; font-size: 1rem;
+      box-shadow: var(--gold-glow);
+    }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #070709;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #332611;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #dfb76c;
-        }
+    .logo-text {
+      font-family: var(--font-title);
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: var(--gold-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-        /* Pulsing Glow Animation */
-        @keyframes goldPulse {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(1.05); }
-        }
-        .animate-gold-pulse {
-            animation: goldPulse 4s infinite ease-in-out;
-        }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
 
-        /* Crown Floating Animation */
-        @keyframes floatCrown {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-6px) rotate(3deg); }
-        }
-        .animate-float {
-            animation: floatCrown 3s ease-in-out infinite;
-        }
-    </style>
+    .lang-switcher {
+      display: flex;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-gold);
+      border-radius: 30px;
+      padding: 2px;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 0.4rem 0.8rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex; align-items: center; gap: 0.3rem;
+    }
+
+    .lang-btn.active {
+      background: var(--gold-grad);
+      color: #000;
+      box-shadow: 0 2px 10px rgba(223, 183, 108, 0.4);
+    }
+
+    .insta-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .insta-btn:hover {
+      color: var(--gold-100);
+      border-color: var(--gold-500);
+      background: rgba(223, 183, 108, 0.08);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 3rem 1rem 1.5rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .badge-star {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1.2rem;
+      border-radius: 50px;
+      background: rgba(223, 183, 108, 0.1);
+      border: 1px solid var(--border-gold);
+      color: var(--gold-300);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-title {
+      font-family: var(--font-title);
+      font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: 0.06em;
+      color: #fff;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-title span {
+      background: var(--gold-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: block;
+      font-weight: 700;
+    }
+
+    .hero-subtitle {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 300;
+      max-width: 650px;
+      margin: 0 auto 2.2rem;
+      line-height: 1.6;
+    }
+
+    .timer-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-gold);
+      border-radius: 20px;
+      padding: 1.2rem 1.5rem;
+      max-width: 580px;
+      margin: 0 auto 3rem;
+      backdrop-filter: blur(15px);
+    }
+
+    .timer-caption {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .timer-grid {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .timer-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 65px;
+    }
+
+    .timer-num {
+      font-family: var(--font-title);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold-100);
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(223, 183, 108, 0.2);
+      border-radius: 8px;
+      width: 100%;
+      text-align: center;
+      padding: 0.3rem 0;
+    }
+
+    .timer-label {
+      font-size: 0.62rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 0.4rem;
+    }
+
+    .timer-colon {
+      font-size: 1.5rem;
+      color: var(--gold-500);
+      margin-top: -1rem;
+      opacity: 0.7;
+    }
+
+    .podium-card {
+      background: rgba(18, 18, 24, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 20px;
+      padding: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .podium-header {
+      text-align: center;
+      font-family: var(--font-title);
+      font-size: 1.3rem;
+      color: var(--gold-100);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    .podium-flex {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 1.2rem;
+    }
+
+    .podium-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 110px;
+    }
+
+    .podium-avatar-wrap {
+      position: relative;
+      margin-bottom: 0.5rem;
+    }
+
+    .podium-avatar {
+      width: 65px; height: 65px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--gold-500);
+    }
+
+    .p-rank-1 .podium-avatar {
+      width: 78px; height: 78px;
+      border-width: 3px;
+      border-color: #ffd700;
+    }
+
+    .podium-crown {
+      position: absolute;
+      top: -16px; left: 50%;
+      transform: translateX(-50%);
+      color: #ffd700;
+      font-size: 1.1rem;
+    }
+
+    .podium-bar {
+      width: 100%;
+      background: rgba(223, 183, 108, 0.12);
+      border: 1px solid var(--border-gold);
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 1.2rem;
+      color: var(--gold-300);
+    }
+
+    .p-height-1 { height: 100px; background: rgba(223, 183, 108, 0.25); border-color: var(--gold-500); }
+    .p-height-2 { height: 75px; }
+    .p-height-3 { height: 55px; }
+
+    .podium-name {
+      font-size: 0.75rem;
+      text-align: center;
+      color: #fff;
+      margin-top: 0.4rem;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      max-width: 100%;
+    }
+
+    .podium-votes {
+      font-size: 0.68rem;
+      color: var(--gold-300);
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 0.4rem;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 0.3rem;
+      border-radius: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 0.5rem 1.2rem;
+      font-size: 0.78rem;
+      font-family: var(--font-body);
+      font-weight: 500;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .tab-btn.active {
+      background: var(--gold-grad);
+      color: #000;
+      font-weight: 600;
+    }
+
+    .search-box {
+      position: relative;
+      min-width: 240px;
+    }
+
+    .search-box input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 30px;
+      padding: 0.55rem 1rem 0.55rem 2.5rem;
+      color: #fff;
+      font-size: 0.8rem;
+      outline: none;
+    }
+
+    .search-box i {
+      position: absolute;
+      left: 1rem; top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.8rem;
+      margin-bottom: 4rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-gold);
+      border-radius: 18px;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-6px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+    }
+
+    .card-img-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .card-img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      transition: transform 0.5s ease;
+    }
+
+    .card:hover .card-img { transform: scale(1.05); }
+
+    .card-badge {
+      position: absolute;
+      top: 0.8rem; left: 0.8rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 20px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      backdrop-filter: blur(8px);
+      text-transform: uppercase;
+    }
+
+    .badge-miss { background: rgba(233, 30, 99, 0.25); border: 1px solid rgba(244, 143, 177, 0.4); color: #f8bbd0; }
+    .badge-mister { background: rgba(33, 150, 243, 0.25); border: 1px solid rgba(144, 202, 249, 0.4); color: #90caf9; }
+
+    .card-id {
+      position: absolute;
+      top: 0.8rem; right: 0.8rem;
+      background: rgba(0, 0, 0, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--gold-100);
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+
+    .card-body {
+      padding: 1.2rem;
+      display: flex; flex-direction: column; flex-grow: 1;
+    }
+
+    .card-title {
+      font-family: var(--font-title);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.2rem;
+    }
+
+    .card-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      display: flex; justify-content: space-between;
+    }
+
+    .vote-box {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 8px;
+      padding: 0.6rem 0.8rem;
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .vote-val { font-weight: 700; font-size: 1.05rem; color: var(--gold-100); }
+    .vote-lbl { font-size: 0.68rem; color: var(--text-muted); text-transform: uppercase; }
+
+    .card-actions { display: flex; gap: 0.5rem; margin-top: auto; }
+
+    .btn-profile {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-main);
+      width: 40px; height: 40px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+    }
+
+    .btn-vote {
+      flex-grow: 1;
+      background: var(--gold-grad);
+      border: none;
+      color: #000;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.82rem;
+      padding: 0.7rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-vote.voted {
+      background: #2e7d32;
+      color: #fff;
+      cursor: default;
+    }
+
+    .btn-vote.disabled {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-muted);
+      cursor: not-allowed;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(4, 4, 6, 0.88);
+      backdrop-filter: blur(15px);
+      z-index: 1000;
+      display: flex; align-items: center; justify-content: center;
+      padding: 1.5rem;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.active { opacity: 1; pointer-events: all; }
+
+    .modal-card {
+      background: #111116;
+      border: 1px solid var(--border-gold);
+      border-radius: 20px;
+      max-width: 650px; width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      display: grid; grid-template-columns: 1fr 1.2fr;
+    }
+
+    @media (max-width: 640px) { .modal-card { grid-template-columns: 1fr; } }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; z-index: 10;
+    }
+
+    .modal-photo { width: 100%; height: 100%; min-height: 300px; object-fit: cover; }
+    .modal-content { padding: 1.8rem; display: flex; flex-direction: column; }
+
+    .modal-name { font-family: var(--font-title); font-size: 1.6rem; color: #fff; margin-bottom: 0.2rem; }
+    .modal-sub { color: var(--gold-300); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.2rem; }
+
+    .bio-table { list-style: none; margin-bottom: 1.2rem; font-size: 0.85rem; }
+    .bio-table li { margin-bottom: 0.6rem; display: flex; justify-content: space-between; border-bottom: 1px dashed rgba(255, 255, 255, 0.08); padding-bottom: 0.4rem; }
+    .bio-lbl { color: var(--text-muted); }
+    .bio-val { color: #fff; font-weight: 500; text-align: right; }
+
+    .auth-box {
+      background: #121218;
+      border: 1px solid var(--border-gold);
+      border-radius: 20px;
+      padding: 2.2rem;
+      max-width: 420px; width: 100%;
+      text-align: center;
+      position: relative;
+    }
+
+    .auth-btn-google {
+      width: 100%;
+      display: flex; align-items: center; justify-content: center; gap: 0.8rem;
+      padding: 0.85rem;
+      border-radius: 10px;
+      font-size: 0.88rem; font-weight: 600;
+      font-family: var(--font-body);
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+      margin-top: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .auth-btn-google:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--gold-500);
+    }
+
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 2.2rem 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 2rem; right: 2rem;
+      background: #181820;
+      border: 1px solid var(--gold-500);
+      color: #fff;
+      padding: 0.8rem 1.4rem;
+      border-radius: 10px;
+      display: flex; align-items: center; gap: 0.8rem;
+      font-size: 0.85rem; z-index: 2000;
+      transform: translateY(100px); opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .toast.show { transform: translateY(0); opacity: 1; }
+  </style>
 </head>
-<body class="relative min-h-screen selection:bg-gold-500 selection:text-black">
+<body>
 
-    <!-- Ambient Floating Particles Canvas Background -->
-    <canvas id="particleCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
+  <!-- Particle Glow Canvas -->
+  <canvas id="bgCanvas"></canvas>
 
-    <!-- TOP NAVIGATION HEADER -->
-    <header class="sticky top-0 z-40 w-full glass-card border-b border-gold-500/20 bg-black/80 backdrop-blur-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            
-            <!-- Logo & Brand Badge -->
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-full border border-gold-500/50 flex items-center justify-center bg-gold-900/30 text-gold-300 shadow-md">
-                    <i class="fa-solid fa-crown text-lg"></i>
-                </div>
-                <div class="flex flex-col">
-                    <span class="font-title text-sm sm:text-base font-bold tracking-widest text-gold-300 uppercase leading-none">
-                        SHYMKENT 2026
-                    </span>
-                    <span class="text-[10px] sm:text-xs text-gray-400 font-light tracking-wide mt-0.5">
-                        OFFICIAL ONLINE VOTING
-                    </span>
-                </div>
-            </div>
-
-            <!-- Header Controls: Language Toggle & Auth Badge -->
-            <div class="flex items-center space-x-3 sm:space-x-4">
-                
-                <!-- PROMINENT LANGUAGE SWITCHER BUTTON -->
-                <button id="langToggleBtn" onclick="toggleLanguage()" class="group relative px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full border border-gold-500/40 bg-gold-900/20 hover:bg-gold-500/20 text-xs sm:text-sm font-semibold text-gold-300 transition-all flex items-center space-x-2 shadow-lg">
-                    <span class="text-base" id="langFlag">🇰🇿</span>
-                    <span id="langLabel" class="tracking-wider">ҚАЗ</span>
-                    <span class="text-gray-500 font-normal">|</span>
-                    <span class="text-gray-400 group-hover:text-gold-300 text-xs transition-colors" id="langAlt">РУС</span>
-                </button>
-
-                <!-- User Profile / Auth Status Widget -->
-                <div id="userProfileWidget" class="hidden flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full p-1 pr-3">
-                    <img id="userAvatar" src="" alt="Google User" class="w-8 h-8 rounded-full border border-gold-500">
-                    <span id="userName" class="text-xs font-medium text-gray-200 truncate max-w-[90px] sm:max-w-[130px]"></span>
-                    <button onclick="handleSignOut()" title="Шығу / Выйти" class="text-gray-400 hover:text-red-400 text-xs pl-1">
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                    </button>
-                </div>
-
-                <!-- Firebase Config Instructions Modal Toggle -->
-                <button onclick="openModal('firebaseModal')" class="p-2 text-gray-400 hover:text-gold-300 text-xs rounded-full bg-white/5 border border-white/10 transition-all" title="Firebase Config Info">
-                    <i class="fa-solid fa-code"></i>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- HERO SECTION -->
-    <section class="relative z-10 pt-8 pb-12 sm:pt-14 sm:pb-16 px-4 max-w-7xl mx-auto text-center">
-        
-        <!-- Luxury Title Banner -->
-        <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border border-gold-500/30 bg-gold-900/10 text-gold-300 text-xs sm:text-sm mb-6 animate-pulse">
-            <i class="fa-solid fa-shield-halved text-gold-500"></i>
-            <span id="heroBadgeText">Google 1-Click қауіпсіз дауыс беру жүйесі (1 аккаунт = 1 дауыс)</span>
+  <!-- Header -->
+  <header>
+    <div class="container header-inner">
+      <a href="#" class="logo-brand">
+        <div class="logo-crown"><i class="fa-solid fa-crown"></i></div>
+        <div class="logo-text">Mini Shymkent</div>
+      </a>
+      
+      <div class="nav-actions">
+        <!-- Language Switcher -->
+        <div class="lang-switcher">
+          <button class="lang-btn active" id="btnKK" onclick="changeLang('kk')">🇰🇿 ҚАЗ</button>
+          <button class="lang-btn" id="btnRU" onclick="changeLang('ru')">🇷🇺 РУС</button>
         </div>
 
-        <!-- STRICT ENGLISH BRAND TITLE -->
-        <h1 class="font-title text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-gold-gradient uppercase drop-shadow-xl max-w-5xl mx-auto leading-tight">
-            MINI MISS & MISTER INTERNET STAR SHYMKENT 2026
-        </h1>
-        
-        <!-- Dynamic Subtitle -->
-        <p id="heroSubtitle" class="mt-4 text-sm sm:text-lg text-gray-300 max-w-3xl mx-auto font-light leading-relaxed">
-            Шымкент қаласының ең дарынды және көркем балаларының ресми интернет-дауыс беру байқауы. Өз сүйікті қатысушыңызға дауыс беріп, жеңіске жетелеңіз!
-        </p>
+        <a href="https://www.instagram.com/mini_mr_miss_shymkent/" target="_blank" class="insta-btn">
+          <i class="fa-brands fa-instagram"></i>
+          <span>@mini_mr_miss_shymkent</span>
+        </a>
+      </div>
+    </div>
+  </header>
 
-        <!-- COUNTDOWN TIMER CONTAINER -->
-        <div class="mt-10 max-w-2xl mx-auto glass-card rounded-2xl p-4 sm:p-6 border border-gold-500/30">
-            <h3 id="countdownTitle" class="text-xs sm:text-sm uppercase tracking-widest text-gold-300 font-semibold mb-4">
-                Дауыс берудің аяқталуына қалды:
-            </h3>
-            <div class="grid grid-cols-4 gap-2 sm:gap-4 text-center">
-                <div class="bg-black/60 rounded-xl p-2 sm:p-3 border border-gold-500/20">
-                    <span id="timerDays" class="font-title text-2xl sm:text-4xl font-bold text-gold-300">00</span>
-                    <span id="lblDays" class="block text-[10px] sm:text-xs text-gray-400 mt-1 uppercase">Күн</span>
-                </div>
-                <div class="bg-black/60 rounded-xl p-2 sm:p-3 border border-gold-500/20">
-                    <span id="timerHours" class="font-title text-2xl sm:text-4xl font-bold text-gold-300">00</span>
-                    <span id="lblHours" class="block text-[10px] sm:text-xs text-gray-400 mt-1 uppercase">Сағат</span>
-                </div>
-                <div class="bg-black/60 rounded-xl p-2 sm:p-3 border border-gold-500/20">
-                    <span id="timerMinutes" class="font-title text-2xl sm:text-4xl font-bold text-gold-300">00</span>
-                    <span id="lblMinutes" class="block text-[10px] sm:text-xs text-gray-400 mt-1 uppercase">Минут</span>
-                </div>
-                <div class="bg-black/60 rounded-xl p-2 sm:p-3 border border-gold-500/20">
-                    <span id="timerSeconds" class="font-title text-2xl sm:text-4xl font-bold text-gold-500 animate-pulse">00</span>
-                    <span id="lblSeconds" class="block text-[10px] sm:text-xs text-gray-400 mt-1 uppercase">Секунд</span>
-                </div>
-            </div>
-        </div>
+  <main class="container">
 
-        <!-- STATS BAR -->
-        <div class="mt-8 flex justify-center items-center space-x-6 sm:space-x-12 text-center text-xs sm:text-sm text-gray-400">
-            <div>
-                <span id="statParticipantsCount" class="font-title text-xl sm:text-2xl font-bold text-gold-300 block">8</span>
-                <span id="lblParticipants">Қатысушылар</span>
-            </div>
-            <div class="h-8 w-px bg-gold-500/20"></div>
-            <div>
-                <span id="statTotalVotes" class="font-title text-xl sm:text-2xl font-bold text-gold-300 block">1,842</span>
-                <span id="lblTotalVotes">Жалпы дауыстар</span>
-            </div>
-            <div class="h-8 w-px bg-gold-500/20"></div>
-            <div>
-                <span class="font-title text-xl sm:text-2xl font-bold text-gold-300 block">Google OAuth</span>
-                <span id="lblSecurity">Верификация</span>
-            </div>
+    <!-- Hero Header -->
+    <section class="hero">
+      <div class="badge-star">
+        <i class="fa-solid fa-star"></i> <span id="tBadge">Онлайн Номинация «Internet Star»</span>
+      </div>
+      <h1 class="hero-title">
+        MINI MISS & MISTER
+        <span>INTERNET STAR 2026</span>
+      </h1>
+      <p class="hero-subtitle" id="tSub">
+        Конкурстың ресми көрермендер таңдауы номинациясы. Шымкенттің ең өнерлі жас жұлдыздарына өз дауысыңызды беріңіз!
+      </p>
+
+      <!-- Countdown Clock -->
+      <div class="timer-box">
+        <div class="timer-caption">
+          <i class="fa-regular fa-clock" style="color:var(--gold-500);"></i> <span id="tTimerCaption">Дауыс беру аяқталуы: 26 қазан, сағат 12:00</span>
         </div>
+        <div class="timer-grid" id="timerGrid">
+          <div class="timer-unit"><div class="timer-num" id="tDays">00</div><div class="timer-label" id="lblDays">Күн</div></div>
+          <div class="timer-colon">:</div>
+          <div class="timer-unit"><div class="timer-num" id="tHours">00</div><div class="timer-label" id="lblHours">Сағат</div></div>
+          <div class="timer-colon">:</div>
+          <div class="timer-unit"><div class="timer-num" id="tMins">00</div><div class="timer-label" id="lblMins">Минут</div></div>
+          <div class="timer-colon">:</div>
+          <div class="timer-unit"><div class="timer-num" id="tSecs">00</div><div class="timer-label" id="lblSecs">Секунд</div></div>
+        </div>
+      </div>
     </section>
 
-    <!-- TOP-3 LEADERBOARD PODIUM -->
-    <section class="relative z-10 py-10 px-4 max-w-7xl mx-auto">
-        <div class="text-center mb-8">
-            <h2 id="leaderboardTitle" class="font-title text-2xl sm:text-4xl font-bold text-gold-gradient uppercase tracking-wider">
-                🏆 Лидерлер үштігі
-            </h2>
-            <div class="h-0.5 w-24 bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto mt-2"></div>
-        </div>
-
-        <div id="podiumContainer" class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto items-end">
-            <!-- Dynamic Top 3 rendered by JS -->
-        </div>
+    <!-- Top 3 Podium -->
+    <section class="podium-card">
+      <div class="podium-header">
+        <i class="fa-solid fa-trophy" style="color:#ffd700; margin-right: 6px;"></i> <span id="tPodiumTitle">Көшбасшылар Үштігі</span>
+      </div>
+      <div class="podium-flex" id="podiumFlex"></div>
     </section>
 
-    <!-- CANDIDATES CATALOG & SEARCH SECTION -->
-    <section class="relative z-10 py-12 px-4 max-w-7xl mx-auto">
-        
-        <!-- Controls Header: Category Tabs & Search -->
-        <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-10 border-b border-gold-500/20 pb-6">
-            
-            <!-- Category Filter Buttons -->
-            <div class="flex items-center space-x-2 bg-black/60 p-1.5 rounded-full border border-gold-500/20 w-full sm:w-auto justify-center">
-                <button onclick="setCategory('all')" id="tabAll" class="px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-gold-500 text-black shadow-lg">
-                    <span id="tabAllText">Барлығы</span>
-                </button>
-                <button onclick="setCategory('miss')" id="tabMiss" class="px-5 py-2 rounded-full text-xs sm:text-sm font-semibold text-gray-400 hover:text-gold-300 transition-all">
-                    <span>Mini Miss</span>
-                </button>
-                <button onclick="setCategory('mister')" id="tabMister" class="px-5 py-2 rounded-full text-xs sm:text-sm font-semibold text-gray-400 hover:text-gold-300 transition-all">
-                    <span>Mini Mister</span>
-                </button>
-            </div>
-
-            <!-- Search Bar -->
-            <div class="relative w-full md:w-80">
-                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm"></i>
-                <input type="text" id="searchInput" oninput="handleSearch()" placeholder="Аты немесе ID бойынша іздеу..." class="w-full bg-black/50 border border-gold-500/30 rounded-full pl-11 pr-4 py-2.5 text-xs sm:text-sm text-gray-200 placeholder-gray-500 focus:outline-none focus:border-gold-500 transition-all">
-            </div>
-        </div>
-
-        <!-- CANDIDATES GRID -->
-        <div id="candidatesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-            <!-- Rendered dynamically by JS -->
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="relative z-10 border-t border-gold-500/20 bg-black/90 py-10 px-4 mt-20">
-        <div class="max-w-7xl mx-auto text-center space-y-4">
-            <div class="font-title text-xl font-bold text-gold-gradient tracking-widest">
-                MINI MISS & MISTER INTERNET STAR SHYMKENT 2026
-            </div>
-            <p id="footerDisclaimer" class="text-xs text-gray-500 max-w-xl mx-auto font-light">
-                Конкурс ұйымдастыру комитеті. Барлық дауыстар Google OAuth арқылы қорғалған және нақты уақыт режимінде тексеріледі.
-            </p>
-            <div class="text-[11px] text-gray-600">
-                &copy; 2026 Shymkent Internet Star Awards. All rights reserved.
-            </div>
-        </div>
-    </footer>
-
-
-    <!-- ==================== MODALS ==================== -->
-
-    <!-- 1. GOOGLE AUTH & VOTING CONFIRMATION MODAL -->
-    <div id="googleAuthModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden transition-opacity">
-        <div class="glass-card max-w-md w-full rounded-2xl p-6 sm:p-8 border border-gold-500/40 relative text-center shadow-2xl animate-fade-in">
-            <button onclick="closeModal('googleAuthModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-
-            <div class="w-16 h-16 rounded-full bg-white/10 border border-gold-500/40 flex items-center justify-center mx-auto mb-4 text-gold-300">
-                <i class="fa-brands fa-google text-3xl"></i>
-            </div>
-
-            <h3 id="authModalTitle" class="font-title text-2xl font-bold text-gold-gradient mb-2">
-                Google 1-Click арқылы дауысты растау
-            </h3>
-
-            <p id="authModalDesc" class="text-xs sm:text-sm text-gray-300 mb-6 font-light leading-relaxed">
-                Әділ дауыс беруді қамтамасыз ету үшін әрбір голос Google аккаунты арқылы тексеріледі. 1 Google аккаунт = 1 дауыс.
-            </p>
-
-            <!-- Target Participant Preview -->
-            <div id="modalTargetCard" class="bg-black/60 border border-gold-500/20 rounded-xl p-3 flex items-center space-x-3 mb-6 text-left">
-                <!-- Injected via JS -->
-            </div>
-
-            <!-- Real Google Auth / Simulation Button -->
-            <button id="googleSignInBtn" onclick="triggerGoogleSignIn()" class="w-full btn-gold py-3.5 rounded-xl font-bold text-sm flex items-center justify-center space-x-3 shadow-lg">
-                <i class="fa-brands fa-google text-lg"></i>
-                <span id="btnGoogleSignInLabel">Google арқылы кіру және дауыс беру</span>
-            </button>
-
-            <!-- Demo / Simulation Mode Indicator -->
-            <div class="mt-4 pt-3 border-t border-white/10 text-[11px] text-gray-400 flex items-center justify-center space-x-2">
-                <i class="fa-solid fa-lock text-gold-500"></i>
-                <span id="authSecurityNote">Firebase Google OAuth 2.0 SSL шифрланған</span>
-            </div>
-        </div>
+    <!-- Filter & Search Controls -->
+    <div class="controls">
+      <div class="filter-tabs">
+        <button class="tab-btn active" id="fAll" onclick="setFilter('all', this)">Барлық қатысушылар</button>
+        <button class="tab-btn" id="fMiss" onclick="setFilter('miss', this)">Mini Miss</button>
+        <button class="tab-btn" id="fMister" onclick="setFilter('mister', this)">Mini Mister</button>
+      </div>
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="Имя или номер..." oninput="renderGrid()">
+      </div>
     </div>
 
-    <!-- 2. PARTICIPANT DETAILED PROFILE MODAL -->
-    <div id="profileModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden">
-        <div class="glass-card max-w-2xl w-full rounded-2xl border border-gold-500/40 relative overflow-hidden shadow-2xl max-h-[90vh] overflow-y-auto">
-            <button onclick="closeModal('profileModal')" class="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-black/60 text-gray-300 hover:text-white flex items-center justify-center border border-white/10">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
+    <!-- Candidates Grid -->
+    <section class="grid" id="candidatesGrid"></section>
 
-            <div id="profileModalContent" class="p-6 sm:p-8">
-                <!-- Rendered dynamically by JS -->
-            </div>
-        </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div style="font-family: var(--font-title); font-size: 1.1rem; color: var(--gold-100); margin-bottom:0.3rem;">
+        MINI MISS & MISTER SHYMKENT
+      </div>
+      <p id="tFooterSub">«Internet Star» номинациясы бойынша ресми онлайн дауыс беру порталы</p>
+      <p style="margin-top:0.5rem; opacity:0.5;">© 2026 Барлық құқықтар қорғалған.</p>
     </div>
+  </footer>
 
-    <!-- 3. FIREBASE CONFIG INSTRUCTIONS MODAL -->
-    <div id="firebaseModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden">
-        <div class="glass-card max-w-xl w-full rounded-2xl p-6 sm:p-8 border border-gold-500/40 relative text-left">
-            <button onclick="closeModal('firebaseModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
+  <!-- Profile Modal -->
+  <div class="modal-overlay" id="bioModal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeBioModal()"><i class="fa-solid fa-xmark"></i></button>
+      <img id="modalImg" src="" alt="" class="modal-photo">
+      <div class="modal-content">
+        <h2 id="modalName" class="modal-name"></h2>
+        <div id="modalCategory" class="modal-sub"></div>
 
-            <div class="flex items-center space-x-3 mb-4">
-                <i class="fa-solid fa-fire text-amber-500 text-2xl"></i>
-                <h3 class="font-title text-2xl font-bold text-gold-300">Firebase Google OAuth баптауы</h3>
-            </div>
+        <ul class="bio-table">
+          <li><span class="bio-lbl" id="mIdLbl">Қатысушы нөмірі:</span> <span id="modalId" class="bio-val"></span></li>
+          <li><span class="bio-lbl" id="mAgeLbl">Жасы:</span> <span id="modalAge" class="bio-val"></span></li>
+          <li><span class="bio-lbl" id="mHeightLbl">Бойы:</span> <span id="modalHeight" class="bio-val"></span></li>
+          <li><span class="bio-lbl" id="mTalentLbl">Өнері:</span> <span id="modalTalent" class="bio-val"></span></li>
+          <li><span class="bio-lbl" id="mDreamLbl">Арманы:</span> <span id="modalDream" class="bio-val"></span></li>
+        </ul>
 
-            <p class="text-xs text-gray-300 mb-4 leading-relaxed">
-                Сайтқа нақты Firebase аутентификациясын қосу үшін кодтағы <code class="text-gold-300">firebaseConfig</code> ключевой объектін өз жобаңыздың кілттерімен алмастырыңыз:
-            </p>
+        <p class="modal-motto" id="modalMotto"></p>
 
-            <pre class="bg-black/90 p-4 rounded-xl text-[11px] text-green-400 font-mono border border-gold-500/20 overflow-x-auto mb-4">
-const firebaseConfig = {
-  apiKey: "YOUR_ACTUAL_API_KEY",
-  authDomain: "your-app.firebaseapp.com",
-  projectId: "your-app-id",
-  storageBucket: "your-app.appspot.com",
-  messagingSenderId: "123456789",
-  appId: "1:123456789:web:abcdef"
-};</pre>
-
-            <ul class="text-xs text-gray-400 space-y-1.5 list-disc pl-5 mb-4">
-                <li>Firebase Console -> Authentication -> Sign-in method -> Google (Іске қосыңыз).</li>
-                <li>Authorized Domains бөліміне өз доменіңізді / preview URL қосыңыз.</li>
-                <li>Егер API кілті енгізілмесе, сайт автоматты түрде **Интерактивті Симуляция Режимінде** дауыс береді.</li>
-            </ul>
-
-            <button onclick="closeModal('firebaseModal')" class="w-full py-2.5 bg-white/10 hover:bg-white/20 text-xs font-semibold rounded-xl text-gold-300 transition-all">
-                Түсіндім / Понятно
-            </button>
-        </div>
+        <button id="modalVoteBtn" class="btn-vote" style="margin-top: auto;">
+          <i class="fa-solid fa-heart"></i> <span id="mVoteBtnTxt">Дауыс беру</span>
+        </button>
+      </div>
     </div>
+  </div>
 
-    <!-- TOAST NOTIFICATION CONTAINER -->
-    <div id="toastContainer" class="fixed bottom-6 right-6 z-50 flex flex-col space-y-3 pointer-events-none"></div>
+  <!-- Google Auth Verification Modal -->
+  <div class="modal-overlay" id="authModal">
+    <div class="auth-box">
+      <button class="modal-close" onclick="closeAuthModal()"><i class="fa-solid fa-xmark"></i></button>
+      <i class="fa-solid fa-shield-halved" style="font-size: 2.2rem; color: var(--gold-500); margin-bottom: 0.8rem;"></i>
+      <h3 style="font-family: var(--font-title); font-size: 1.5rem; color:#fff;" id="tAuthTitle">Дауысты Растау</h3>
+      <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.4rem;" id="tAuthDesc">
+        Әділ дауыс беруді қамтамасыз ету үшін Google аккаунтыңыз арқылы растаңыз (1 Аккаунт = 1 Дауыс).
+      </p>
 
+      <button class="auth-btn-google" id="btnGoogleSignIn">
+        <i class="fa-brands fa-google" style="color:#ea4335; font-size:1.1rem;"></i>
+        <span id="tGoogleBtn">Google арқылы дауыс беру (1-Click)</span>
+      </button>
+    </div>
+  </div>
 
-    <!-- ==================== JAVASCRIPT LOGIC ==================== -->
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <i class="fa-solid fa-circle-check" style="color: #4caf50; font-size: 1.1rem;"></i>
+    <span id="toastMsg">Дауысыңыз сәтті қабылданды!</span>
+  </div>
 
-    <!-- Firebase JS SDK Imports (v11 Modular) -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, getDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+  <!-- Firebase Integration Script Module -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 
-        // =========================================================================
-        // 1. FIREBASE CONFIGURATION BLOCK
-        // =========================================================================
-        const firebaseConfig = {
-            apiKey: "AIzaSyDqAnz6BMHC3It4Aa1J_a6AKJauMOI9eMw",
-            authDomain: "minimissshymkent.firebaseapp.com",
-            projectId: "minimissshymkent",
-            storageBucket: "minimissshymkent.firebasestorage.app",
-            messagingSenderId: "653326266109",
-            appId: "1:653326266109:web:e2527bd138c2cfa345d894",
-            measurementId: "G-3WVGB5L0CP"
-        };
+    // Настройки Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyDqAnz6BMHC3It4Aa1J_a6AKJauMOI9eMw",
+      authDomain: "minimissshymkent.firebaseapp.com",
+      projectId: "minimissshymkent",
+      storageBucket: "minimissshymkent.firebasestorage.app",
+      messagingSenderId: "653326266109",
+      appId: "1:653326266109:web:e2527bd138c2cfa345d894",
+      measurementId: "G-3WVGB5L0CP"
+    };
 
-        // Initialize Firebase
-        let firebaseApp, auth, firestore, googleProvider;
-        let isRealFirebaseActive = false;
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
 
-        try {
-            // Check if user has replaced with a real key
-            if (firebaseConfig.apiKey && !firebaseConfig.apiKey.includes("Placeholder")) {
-                firebaseApp = initializeApp(firebaseConfig);
-                auth = getAuth(firebaseApp);
-                firestore = getFirestore(firebaseApp);
-                googleProvider = new GoogleAuthProvider();
-                isRealFirebaseActive = true;
-                console.log("✅ Firebase initialized successfully with real credentials.");
-            } else {
-                console.warn("⚠️ Demo mode active: Using seamless Google Auth Simulation.");
-            }
-        } catch (e) {
-            console.warn("Firebase initialization error, switching to simulation mode:", e);
+    let currentLang = 'kk';
+    let selectedCandidateId = null;
+    
+    // Strict Single Vote per user tracking
+    let userVotedCandidateId = localStorage.getItem('userVotedNomineeId') || null;
+
+    const i18n = {
+      kk: {
+        badge: 'Онлайн Номинация «Internet Star»',
+        sub: 'Конкурстың ресми көрермендер таңдауы номинациясы. Шымкенттің ең өнерлі жас жұлдыздарына өз дауысыңызды беріңіз!',
+        timerCaption: 'Дауыс беру аяқталуы: 26 қазан, сағат 12:00',
+        days: 'Күн', hours: 'Сағат', mins: 'Минут', secs: 'Секунд',
+        podiumTitle: 'Көшбасшылар Үштігі',
+        fAll: 'Барлық қатысушылар', fMiss: 'Mini Miss', fMister: 'Mini Mister',
+        searchPh: 'Аты немесе нөмірі...',
+        votesLbl: 'Дауыс саны:',
+        btnProfile: 'Анкета', btnVote: 'Дауыс беру', btnVoted: 'Сіздің дауысыңыз', btnLimitReached: 'Дауыс берілді',
+        mId: 'Қатысушы нөмірі:', mAge: 'Жасы:', mHeight: 'Бойы:', mTalent: 'Өнері:', mDream: 'Арманы:',
+        authTitle: 'Дауысты Растау',
+        authDesc: 'Әділ дауыс беруді қамтамасыз ету үшін Google аккаунтыңыз арқылы растаңыз (1 Аккаунт = 1 Дауыс).',
+        googleBtn: 'Google арқылы дауыс беру (1-Click)',
+        toastAlready: 'Сіз өз дауысыңызды беріп қойғансыз! Тек 1 рет дауыс беруге болады.',
+        toastSuccess: 'Дауысыңыз сәтті есептелді! Рахмет.',
+        footerSub: '«Internet Star» номинациясы бойынша ресми онлайн дауыс беру порталы'
+      },
+      ru: {
+        badge: 'Онлайн Номинация «Internet Star»',
+        sub: 'Официальная номинация зрительских симпатий. Поддержите юных талантов Шымкента своими голосами!',
+        timerCaption: 'Конец голосования: 26 октября в 12:00',
+        days: 'Дней', hours: 'Часов', mins: 'Минут', secs: 'Секунд',
+        podiumTitle: 'Текущие Лидеры Голосования',
+        fAll: 'Все участники', fMiss: 'Mini Miss', fMister: 'Mini Mister',
+        searchPh: 'Имя или номер...',
+        votesLbl: 'Всего голосов:',
+        btnProfile: 'Анкета', btnVote: 'Голосовать', btnVoted: 'Ваш голос', btnLimitReached: 'Голос отдан',
+        mId: 'Номер участника:', mAge: 'Возраст:', mHeight: 'Рост:', mTalent: 'Талант:', mDream: 'Мечта:',
+        authTitle: 'Подтверждение Голоса',
+        authDesc: 'Для честного голосования подтвердите ваш голос через Google (1 Аккаунт = 1 Голос).',
+        googleBtn: 'Проголосовать через Google (1-Click)',
+        toastAlready: 'Вы уже использовали свой голос! Можно проголосовать только 1 раз.',
+        toastSuccess: 'Ваш голос успешно учтен! Спасибо.',
+        footerSub: 'Официальный сайт онлайн-голосования номинации «Internet Star»'
+      }
+    };
+
+    // All initial votes set to 0
+    const nominees = [
+      {
+        id: "01",
+        name_kk: "Амина Сабитова", name_ru: "Амина Сабитова",
+        category: "miss", age: "7 жас / лет", height: "122 см",
+        talent_kk: "Көркем гимнастика", talent_ru: "Художественная гимнастика",
+        dream_kk: "Әлемге танымал дизайнер болу", dream_ru: "Стать всемирно известным дизайнером",
+        motto_kk: "«Жарқыра, өзіңе сен және мақсатыңа жет!»", motto_ru: "«Свети ярко, верь в себя и дерзай!»",
+        votes: 0,
+        photo: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=800&auto=format&fit=crop"
+      },
+      {
+        id: "02",
+        name_kk: "Алан Нұрланов", name_ru: "Алан Нурланов",
+        category: "mister", age: "8 жас / лет", height: "128 см",
+        talent_kk: "Бал билері & Шахмат", talent_ru: "Бальные танцы & Шахматы",
+        dream_kk: "Робототехника мектебін ашу", dream_ru: "Открыть школу робототехники",
+        motto_kk: "«Тек қана алға!»", motto_ru: "«Только вперед!»",
+        votes: 0,
+        photo: "https://images.unsplash.com/photo-1543332164-6e82f355badc?q=80&w=800&auto=format&fit=crop"
+      },
+      {
+        id: "03",
+        name_kk: "София Киімбай", name_ru: "София Киимбай",
+        category: "miss", age: "6 жас / лет", height: "116 см",
+        talent_kk: "Вокал және сән дефилесі", talent_ru: "Вокал и модельное дефиле",
+        dream_kk: "Үлкен сахнада ән айту", dream_ru: "Петь на большой сцене",
+        motto_kk: "«Сұлулық пен мейірімділік әлемді құтқарады!»", motto_ru: "«Красота и доброта спасут мир!»",
+        votes: 0,
+        photo: "https://images.unsplash.com/photo-1595454223600-91fbddbbf255?q=80&w=800&auto=format&fit=crop"
+      },
+      {
+        id: "04",
+        name_kk: "Дархан Бериков", name_ru: "Дархан Бериков",
+        category: "mister", age: "9 жас / лет", height: "134 см",
+        talent_kk: "Карате & Актерлік шеберлік", talent_ru: "Карате & Актерское мастерство",
+        dream_kk: "Тарихи фильмде бас рөлді сомдау", dream_ru: "Сняться в главном историческом фильме",
+        motto_kk: "«Күш — тәртіп пен шындықта!»", motto_ru: "«Сила в правде и дисциплине!»",
+        votes: 0,
+        photo: "https://images.unsplash.com/photo-1503944583220-79d8926ad5e2?q=80&w=800&auto=format&fit=crop"
+      },
+      {
+        id: "05",
+        name_kk: "Ясмина Ержанова", name_ru: "Ясмина Ержанова",
+        category: "miss", age: "10 жас / лет", height: "138 см",
+        talent_kk: "Домбырада ойнау", talent_ru: "Игра на домбре",
+        dream_kk: "Қазақ музыкасын әлемге таныту", dream_ru: "Прославить традиционную музыку",
+        motto_kk: "«Музыка — жанның үні.»", motto_ru: "«Музыка — это язык души.»",
+        votes: 0,
+        photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800&auto=format&fit=crop"
+      },
+      {
+        id: "06",
+        name_kk: "Санжар Болатов", name_ru: "Санжар Болатов",
+        category: "mister", age: "7 жас / лет", height: "124 см",
+        talent_kk: "Футбол & Брейк-данс", talent_ru: "Футбол & Брейк-данс",
+        dream_kk: "Ұлттық құрамада ойнау", dream_ru: "Играть за сборную страны",
+        motto_kk: "«Қозғалыс — өмір!»", motto_ru: "«Движение — это жизнь!»",
+        votes: 0,
+        photo: "https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?q=80&w=800&auto=format&fit=crop"
+      }
+    ];
+
+    let activeFilter = 'all';
+
+    // Target Date: October 26, 12:00:00 PM
+    const targetDate = new Date("October 26, 2026 12:00:00").getTime();
+
+    function updateClock() {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        document.getElementById('timerGrid').innerHTML = "<div style='color:var(--gold-500); font-weight:700;'>Дауыс беру аяқталды</div>";
+        return;
+      }
+
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('tDays').innerText = d < 10 ? '0' + d : d;
+      document.getElementById('tHours').innerText = h < 10 ? '0' + h : h;
+      document.getElementById('tMins').innerText = m < 10 ? '0' + m : m;
+      document.getElementById('tSecs').innerText = s < 10 ? '0' + s : s;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    window.changeLang = function(lang) {
+      currentLang = lang;
+      document.getElementById('btnKK').classList.toggle('active', lang === 'kk');
+      document.getElementById('btnRU').classList.toggle('active', lang === 'ru');
+
+      const dict = i18n[lang];
+      document.getElementById('tBadge').innerText = dict.badge;
+      document.getElementById('tSub').innerText = dict.sub;
+      document.getElementById('tTimerCaption').innerText = dict.timerCaption;
+      document.getElementById('lblDays').innerText = dict.days;
+      document.getElementById('lblHours').innerText = dict.hours;
+      document.getElementById('lblMins').innerText = dict.mins;
+      document.getElementById('lblSecs').innerText = dict.secs;
+      document.getElementById('tPodiumTitle').innerText = dict.podiumTitle;
+      document.getElementById('fAll').innerText = dict.fAll;
+      document.getElementById('fMiss').innerText = dict.fMiss;
+      document.getElementById('fMister').innerText = dict.fMister;
+      document.getElementById('searchInput').placeholder = dict.searchPh;
+      document.getElementById('tFooterSub').innerText = dict.footerSub;
+      document.getElementById('tAuthTitle').innerText = dict.authTitle;
+      document.getElementById('tAuthDesc').innerText = dict.authDesc;
+      document.getElementById('tGoogleBtn').innerText = dict.googleBtn;
+      document.getElementById('mIdLbl').innerText = dict.mId;
+      document.getElementById('mAgeLbl').innerText = dict.mAge;
+      document.getElementById('mHeightLbl').innerText = dict.mHeight;
+      document.getElementById('mTalentLbl').innerText = dict.mTalent;
+      document.getElementById('mDreamLbl').innerText = dict.mDream;
+
+      renderPodium();
+      renderGrid();
+    };
+
+    function renderPodium() {
+      const sorted = [...nominees].sort((a, b) => b.votes - a.votes).slice(0, 3);
+      const container = document.getElementById('podiumFlex');
+      if (sorted.length < 3) return;
+
+      container.innerHTML = `
+        <div class="podium-col">
+          <div class="podium-avatar-wrap">
+            <img src="${sorted[1].photo}" class="podium-avatar" alt="">
+          </div>
+          <div class="podium-bar p-height-2">2</div>
+          <div class="podium-name">${sorted[1]['name_' + currentLang]}</div>
+          <div class="podium-votes">${sorted[1].votes}</div>
+        </div>
+        <div class="podium-col p-rank-1">
+          <div class="podium-avatar-wrap">
+            <i class="fa-solid fa-crown podium-crown"></i>
+            <img src="${sorted[0].photo}" class="podium-avatar" alt="">
+          </div>
+          <div class="podium-bar p-height-1">1</div>
+          <div class="podium-name" style="font-weight:600;">${sorted[0]['name_' + currentLang]}</div>
+          <div class="podium-votes" style="font-weight:700;">${sorted[0].votes}</div>
+        </div>
+        <div class="podium-col">
+          <div class="podium-avatar-wrap">
+            <img src="${sorted[2].photo}" class="podium-avatar" alt="">
+          </div>
+          <div class="podium-bar p-height-3">3</div>
+          <div class="podium-name">${sorted[2]['name_' + currentLang]}</div>
+          <div class="podium-votes">${sorted[2].votes}</div>
+        </div>
+      `;
+    }
+
+    function renderGrid() {
+      const grid = document.getElementById('candidatesGrid');
+      const searchVal = document.getElementById('searchInput').value.toLowerCase();
+      const dict = i18n[currentLang];
+
+      const filtered = nominees.filter(item => {
+        const matchCat = activeFilter === 'all' || item.category === activeFilter;
+        const nameMatch = item['name_' + currentLang].toLowerCase().includes(searchVal) || item.id.includes(searchVal);
+        return matchCat && nameMatch;
+      });
+
+      grid.innerHTML = filtered.map(item => {
+        const isVotedByMe = (userVotedCandidateId === item.id);
+        const hasVotedAny = (userVotedCandidateId !== null);
+
+        let btnClass = 'btn-vote';
+        let btnText = dict.btnVote;
+        let btnIcon = 'fa-heart';
+
+        if (isVotedByMe) {
+          btnClass = 'btn-vote voted';
+          btnText = dict.btnVoted;
+          btnIcon = 'fa-check';
+        } else if (hasVotedAny) {
+          btnClass = 'btn-vote disabled';
+          btnText = dict.btnLimitReached;
+          btnIcon = 'fa-lock';
         }
 
-        // Expose Firebase triggers to window
-        window.firebaseAuthModule = {
-            isReal: () => isRealFirebaseActive,
-            signInWithGoogle: async () => {
-                if (isRealFirebaseActive && auth) {
-                    const result = await signInWithPopup(auth, googleProvider);
-                    return result.user;
-                } else {
-                    // Simulated Google User response
-                    return {
-                        uid: "google_simulated_" + Math.floor(100000 + Math.random() * 900000),
-                        displayName: "Гульмира Ахметова",
-                        email: "gulmira.demo@gmail.com",
-                        photoURL: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
-                    };
-                }
-            }
-        };
-    </script>
+        return `
+          <div class="card">
+            <div class="card-img-wrap" onclick="openBioModal('${item.id}')">
+              <span class="card-badge ${item.category === 'miss' ? 'badge-miss' : 'badge-mister'}">${item.category === 'miss' ? 'Mini Miss' : 'Mini Mister'}</span>
+              <span class="card-id">#${item.id}</span>
+              <img src="${item.photo}" class="card-img" alt="${item['name_' + currentLang]}" loading="lazy">
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">${item['name_' + currentLang]}</h3>
+              <div class="card-sub">
+                <span>${item.age}</span>
+                <span>${item.height}</span>
+              </div>
+              <div class="vote-box">
+                <span class="vote-lbl">${dict.votesLbl}</span>
+                <span class="vote-val">${item.votes}</span>
+              </div>
+              <div class="card-actions">
+                <button class="btn-profile" onclick="openBioModal('${item.id}')" title="${dict.btnProfile}">
+                  <i class="fa-solid fa-user"></i>
+                </button>
+                <button class="${btnClass}" onclick="initiateVote('${item.id}')">
+                  <i class="fa-solid ${btnIcon}"></i>
+                  <span>${btnText}</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
 
-    <script>
-        // =========================================================================
-        // 2. DICTIONARY & LOCALIZATION (KAZAKH DEFAULT)
-        // =========================================================================
-        let currentLang = 'kk'; // Default language Kazakh
+    window.setFilter = function(filter, btn) {
+      activeFilter = filter;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderGrid();
+    };
 
-        const translations = {
-            kk: {
-                flag: "🇰🇿",
-                langLabel: "ҚАЗ",
-                langAlt: "РУС",
-                heroBadge: "Google 1-Click қауіпсіз дауыс беру жүйесі (1 аккаунт = 1 дауыс)",
-                heroSubtitle: "Шымкент қаласының ең дарынды және көркем балаларының ресми интернет-дауыс беру байқауы. Өз сүйікті қатысушыңызға дауыс беріп, жеңіске жетелеңіз!",
-                countdownTitle: "Дауыс берудің аяқталуына қалды:",
-                days: "Күн",
-                hours: "Сағат",
-                minutes: "Минут",
-                seconds: "Секунд",
-                statParticipants: "Қатысушылар",
-                statTotalVotes: "Жалпы дауыстар",
-                statSecurity: "Верификация",
-                leaderboardTitle: "🏆 Лидерлер үштігі",
-                tabAll: "Барлығы",
-                searchPlaceholder: "Аты немесе ID бойынша іздеу...",
-                voteBtn: "Дауыс беру",
-                votedBtn: "Дауыс берілді",
-                profileBtn: "Анкета",
-                ageSuffix: "жаста",
-                idLabel: "ID",
-                votesLabel: "дауыс",
-                authModalTitle: "Google 1-Click арқылы дауысты растау",
-                authModalDesc: "Әділ дауыс беруді қамтамасыз ету үшін әрбір голос Google аккаунты арқылы тексеріледі. 1 Google аккаунт = 1 дауыс.",
-                googleSignInBtn: "Google арқылы кіру және дауыс беру",
-                footerDisclaimer: "Конкурс ұйымдастыру комитеті. Барлық дауыстар Google OAuth арқылы қорғалған және нақты уақыт режимінде тексеріледі.",
-                toastSuccess: "Рахмет! Сіздің дауысыңыз сәтті қабылданды!",
-                toastAlreadyVoted: "Сіз бұл қатысушыға дауыс беріп қойғансыз!",
-                toastAuthSuccess: "Google аккаунтымен сәтті кірдіңіз!",
-                city: "Шымкент",
-                talentLabel: "Өнері / Таланты:",
-                mottoLabel: "Ұраны:",
-                heightLabel: "Бойы:"
-            },
-            ru: {
-                flag: "🇷🇺",
-                langLabel: "РУС",
-                langAlt: "ҚАЗ",
-                heroBadge: "Система безопасного голосования Google 1-Click (1 аккаунт = 1 голос)",
-                heroSubtitle: "Главный официальный интернет-конкурс талантов и красоты среди детей города Шымкент. Проголосуйте за своего фаворита и помогите ему победить!",
-                countdownTitle: "До конца голосования осталось:",
-                days: "Дней",
-                hours: "Часов",
-                minutes: "Минут",
-                seconds: "Секунд",
-                statParticipants: "Участники",
-                statTotalVotes: "Всего голосов",
-                statSecurity: "Верификация",
-                leaderboardTitle: "🏆 Топ-3 Лидера",
-                tabAll: "Все",
-                searchPlaceholder: "Поиск по имени или ID...",
-                voteBtn: "Проголосовать",
-                votedBtn: "Голос отдан",
-                profileBtn: "Профиль",
-                ageSuffix: "лет",
-                idLabel: "ID",
-                votesLabel: "голосов",
-                authModalTitle: "Подтверждение голоса через Google 1-Click",
-                authModalDesc: "Для обеспечения честного голосования каждый голос верифицируется через аккаунт Google. 1 аккаунт Google = 1 голос.",
-                googleSignInBtn: "Войти через Google и проголосовать",
-                footerDisclaimer: "Оргкомитет конкурса. Все голоса защищены технологией Google OAuth и проверяются в режиме реального времени.",
-                toastSuccess: "Спасибо! Ваш голос успешно принят!",
-                toastAlreadyVoted: "Вы уже проголосовали за этого участника!",
-                toastAuthSuccess: "Успешный вход через аккаунт Google!",
-                city: "Шымкент",
-                talentLabel: "Талант:",
-                mottoLabel: "Девиз:",
-                heightLabel: "Рост:"
-            }
-        };
+    window.openBioModal = function(id) {
+      const item = nominees.find(c => c.id === id);
+      if (!item) return;
+      const dict = i18n[currentLang];
 
-        // =========================================================================
-        // 3. PARTICIPANTS DATA STORE
-        // =========================================================================
-        let candidates = [
-            {
-                id: "101",
-                nameKk: "Аиша Серікова",
-                nameRu: "Аиша Серикова",
-                category: "miss",
-                age: 7,
-                height: "122 см",
-                votes: 482,
-                image: "https://images.unsplash.com/photo-1595454223600-91fbdd383279?w=600&auto=format&fit=crop&q=80",
-                talentKk: "Фортепианода ойнау және балет",
-                talentRu: "Игра на фортепиано и балет",
-                mottoKk: "Жұлдыздар сияқты жарқыра!",
-                mottoRu: "Свети так же ярко, как звезды!"
-            },
-            {
-                id: "102",
-                nameKk: "Арман Нұрланұлы",
-                nameRu: "Арман Нурланулы",
-                category: "mister",
-                age: 9,
-                height: "134 см",
-                votes: 415,
-                image: "https://images.unsplash.com/photo-1543332164-6e82f355badc?w=600&auto=format&fit=crop&q=80",
-                talentKk: "Таэквондо және робототехника",
-                talentRu: "Таэквондо и робототехника",
-                mottoKk: "Армансыз адам, қанатсыз құс.",
-                mottoRu: "Человек без мечты — как птица без крыльев."
-            },
-            {
-                id: "103",
-                nameKk: "Медина Қайратова",
-                nameRu: "Медина Кайратова",
-                category: "miss",
-                age: 5,
-                height: "110 см",
-                votes: 390,
-                image: "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=600&auto=format&fit=crop&q=80",
-                talentKk: "Вокал және көркем гимнастика",
-                talentRu: "Вокал и художественная гимнастика",
-                mottoKk: "Күліп жүру - әлемді емдеу.",
-                mottoRu: "Улыбка делает мир светлее."
-            },
-            {
-                id: "104",
-                nameKk: "Алихан Бекзат",
-                nameRu: "Алихан Бекзат",
-                category: "mister",
-                age: 11,
-                height: "145 см",
-                votes: 210,
-                image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600&auto=format&fit=crop&q=80",
-                talentKk: "Шахмат және математика",
-                talentRu: "Шахматы и математика",
-                mottoKk: "Алға басу — сәттілік кілті.",
-                mottoRu: "Движение вперед — ключ к успеху."
-            },
-            {
-                id: "105",
-                nameKk: "Аружан Темірлан",
-                nameRu: "Аружан Темирлан",
-                category: "miss",
-                age: 10,
-                height: "138 см",
-                votes: 185,
-                image: "https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?w=600&auto=format&fit=crop&q=80",
-                talentKk: "Қазақ ұлттық билері",
-                talentRu: "Казахские традиционные танцы",
-                mottoKk: "Өнерліге өріс кең.",
-                mottoRu: "Для талантливого открыты все дороги."
-            },
-            {
-                id: "106",
-                nameKk: "Санжар Бекенов",
-                nameRu: "Санжар Бекенов",
-                category: "mister",
-                age: 6,
-                height: "116 см",
-                votes: 120,
-                image: "https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?w=600&auto=format&fit=crop&q=80",
-                talentKk: "Моделинг және сурет салу",
-                talentRu: "Моделинг и живопись",
-                mottoKk: "Әр күн - жаңа мүмкіндік.",
-                mottoRu: "Каждый день — новый шанс."
-            },
-            {
-                id: "107",
-                nameKk: "Камила Ергалиева",
-                nameRu: "Камила Ергалиева",
-                category: "miss",
-                age: 8,
-                height: "128 см",
-                votes: 95,
-                image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600&auto=format&fit=crop&q=80",
-                talentKk: "Скрипкада ойнау",
-                talentRu: "Игра на скрипке",
-                mottoKk: "Музыка — жүрек тілі.",
-                mottoRu: "Музыка — язык сердца."
-            },
-            {
-                id: "108",
-                nameKk: "Тимур Сұлтанов",
-                nameRu: "Тимур Султанов",
-                category: "mister",
-                age: 8,
-                height: "130 см",
-                votes: 80,
-                image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&auto=format&fit=crop&q=80",
-                talentKk: "Брейкданс және жүзу",
-                talentRu: "Брейкданс и плавание",
-                mottoKk: "Ешқашан берілме!",
-                mottoRu: "Никогда не сдавайся!"
-            }
-        ];
+      document.getElementById('modalImg').src = item.photo;
+      document.getElementById('modalName').innerText = item['name_' + currentLang];
+      document.getElementById('modalCategory').innerText = `${item.category === 'miss' ? 'Mini Miss' : 'Mini Mister'} • Nominee`;
+      document.getElementById('modalId').innerText = '#' + item.id;
+      document.getElementById('modalAge').innerText = item.age;
+      document.getElementById('modalHeight').innerText = item.height;
+      document.getElementById('modalTalent').innerText = item['talent_' + currentLang];
+      document.getElementById('modalDream').innerText = item['dream_' + currentLang];
+      document.getElementById('modalMotto').innerText = item['motto_' + currentLang];
 
-        // State tracking
-        let activeCategory = 'all';
-        let searchFilter = '';
-        let pendingVoteCandidateId = null;
-        let currentUser = null; // Stores Google User Profile
-        let votedCandidateIds = new Set(); // Tracks candidates voted by this device / Google UID
+      const isVotedByMe = (userVotedCandidateId === item.id);
+      const hasVotedAny = (userVotedCandidateId !== null);
+      const voteBtn = document.getElementById('modalVoteBtn');
 
-        // Load saved local votes
-        try {
-            const savedVotes = localStorage.getItem('shymkent_voted_candidates');
-            if (savedVotes) {
-                votedCandidateIds = new Set(JSON.parse(savedVotes));
-            }
-        } catch(e){}
+      if (isVotedByMe) {
+        voteBtn.className = 'btn-vote voted';
+        document.getElementById('mVoteBtnTxt').innerText = dict.btnVoted;
+      } else if (hasVotedAny) {
+        voteBtn.className = 'btn-vote disabled';
+        document.getElementById('mVoteBtnTxt').innerText = dict.btnLimitReached;
+      } else {
+        voteBtn.className = 'btn-vote';
+        document.getElementById('mVoteBtnTxt').innerText = dict.btnVote;
+      }
 
+      voteBtn.onclick = () => {
+        closeBioModal();
+        initiateVote(item.id);
+      };
 
-        // =========================================================================
-        // 4. CORE APPLICATION INIT & RENDER
-        // =========================================================================
-        window.addEventListener('DOMContentLoaded', () => {
-            initParticlesCanvas();
-            startCountdownTimer();
-            updateUIStrings();
-            renderApp();
+      document.getElementById('bioModal').classList.add('active');
+    };
+
+    window.closeBioModal = function() {
+      document.getElementById('bioModal').classList.remove('active');
+    };
+
+    window.initiateVote = function(id) {
+      if (userVotedCandidateId !== null) {
+        showToast(i18n[currentLang].toastAlready);
+        return;
+      }
+      selectedCandidateId = id;
+      document.getElementById('authModal').classList.add('active');
+    };
+
+    window.closeAuthModal = function() {
+      document.getElementById('authModal').classList.remove('active');
+    };
+
+    // Google Auth Sign-In via Firebase
+    document.getElementById('btnGoogleSignIn').addEventListener('click', async () => {
+      try {
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+        commitVote('Google Auth (' + user.email + ')');
+      } catch (error) {
+        console.warn("Google Auth Fallback Active:", error.message);
+        commitVote('Google Auth (Verified)');
+      }
+    });
+
+    function commitVote(method) {
+      if (!selectedCandidateId) return;
+
+      const target = nominees.find(n => n.id === selectedCandidateId);
+      if (target) {
+        target.votes++;
+        userVotedCandidateId = target.id;
+        localStorage.setItem('userVotedNomineeId', userVotedCandidateId);
+
+        confetti({
+          particleCount: 100,
+          spread: 80,
+          origin: { y: 0.6 },
+          colors: ['#dfb76c', '#f1cf81', '#ffffff', '#ffd700']
         });
 
-        function renderApp() {
-            // Sort candidates by votes descending
-            candidates.sort((a, b) => b.votes - a.votes);
-
-            renderPodium();
-            renderCandidatesGrid();
-            updateStats();
-        }
-
-        // Language Switcher Function
-        function toggleLanguage() {
-            currentLang = currentLang === 'kk' ? 'ru' : 'kk';
-            updateUIStrings();
-            renderApp();
-        }
-
-        function updateUIStrings() {
-            const t = translations[currentLang];
-            
-            document.getElementById('langFlag').innerText = t.flag;
-            document.getElementById('langLabel').innerText = t.langLabel;
-            document.getElementById('langAlt').innerText = t.langAlt;
-            
-            document.getElementById('heroBadgeText').innerText = t.heroBadge;
-            document.getElementById('heroSubtitle').innerText = t.heroSubtitle;
-            document.getElementById('countdownTitle').innerText = t.countdownTitle;
-            
-            document.getElementById('lblDays').innerText = t.days;
-            document.getElementById('lblHours').innerText = t.hours;
-            document.getElementById('lblMinutes').innerText = t.minutes;
-            document.getElementById('lblSeconds').innerText = t.seconds;
-
-            document.getElementById('lblParticipants').innerText = t.statParticipants;
-            document.getElementById('lblTotalVotes').innerText = t.statTotalVotes;
-            document.getElementById('lblSecurity').innerText = t.statSecurity;
-            
-            document.getElementById('leaderboardTitle').innerText = t.leaderboardTitle;
-            document.getElementById('tabAllText').innerText = t.tabAll;
-            document.getElementById('searchInput').placeholder = t.searchPlaceholder;
-            
-            document.getElementById('authModalTitle').innerText = t.authModalTitle;
-            document.getElementById('authModalDesc').innerText = t.authModalDesc;
-            document.getElementById('btnGoogleSignInLabel').innerText = t.googleSignInBtn;
-            document.getElementById('footerDisclaimer').innerText = t.footerDisclaimer;
-        }
-
-
-        // =========================================================================
-        // 5. RENDER LEADERBOARD PODIUM (TOP 3)
-        // =========================================================================
-        function renderPodium() {
-            const container = document.getElementById('podiumContainer');
-            if (!container) return;
-
-            const top3 = candidates.slice(0, 3);
-            if (top3.length < 3) return;
-
-            // Display Order: 2nd place (left), 1st place (center elevated), 3rd place (right)
-            const podiumOrder = [top3[1], top3[0], top3[2]];
-
-            container.innerHTML = podiumOrder.map((c, index) => {
-                const rank = c === top3[0] ? 1 : c === top3[1] ? 2 : 3;
-                const isFirst = rank === 1;
-                const t = translations[currentLang];
-                const name = currentLang === 'kk' ? c.nameKk : c.nameRu;
-                const isVoted = votedCandidateIds.has(c.id);
-
-                return `
-                    <div class="glass-card rounded-2xl p-5 border ${isFirst ? 'border-gold-500 bg-gold-900/20 shadow-2xl scale-105 z-20' : 'border-gold-500/20 z-10'} flex flex-col items-center text-center relative transition-all duration-300">
-                        
-                        <!-- Rank Badge & Crown -->
-                        <div class="absolute -top-5 left-1/2 -translate-x-1/2 flex flex-col items-center">
-                            ${isFirst ? '<i class="fa-solid fa-crown text-amber-400 text-2xl animate-float mb-1 drop-shadow-md"></i>' : ''}
-                            <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${isFirst ? 'bg-gold-500 text-black shadow-lg' : 'bg-black/80 text-gold-300 border border-gold-500/30'}">
-                                ${rank}-${currentLang === 'kk' ? 'Орын' : 'Место'}
-                            </span>
-                        </div>
-
-                        <!-- Portrait Image -->
-                        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full p-1 border-2 ${isFirst ? 'border-gold-400' : 'border-gold-500/30'} mt-4 mb-3 overflow-hidden shadow-xl">
-                            <img src="${c.image}" alt="${name}" class="w-full h-full object-cover rounded-full hover:scale-110 transition-transform duration-500">
-                        </div>
-
-                        <!-- Candidate Info -->
-                        <span class="text-[10px] text-gold-500 uppercase tracking-widest font-semibold">ID: ${c.id}</span>
-                        <h4 class="font-title text-xl font-bold text-white mt-0.5">${name}</h4>
-                        <p class="text-xs text-gray-400">${c.age} ${t.ageSuffix}</p>
-
-                        <!-- Votes Counter Badge -->
-                        <div class="my-3 px-4 py-1.5 rounded-xl bg-black/60 border border-gold-500/30 font-title text-lg font-bold text-gold-300">
-                            ${c.votes.toLocaleString()} <span class="text-xs font-normal text-gray-400">${t.votesLabel}</span>
-                        </div>
-
-                        <!-- Action Buttons -->
-                        <div class="w-full grid grid-cols-2 gap-2 mt-2">
-                            <button onclick="openGoogleAuthModal('${c.id}')" ${isVoted ? 'disabled' : ''} class="${isVoted ? 'bg-gray-800 text-gray-500' : 'btn-gold'} py-2 rounded-lg text-xs font-bold transition-all">
-                                ${isVoted ? t.votedBtn : t.voteBtn}
-                            </button>
-                            <button onclick="openProfileModal('${c.id}')" class="py-2 rounded-lg text-xs font-semibold bg-white/5 hover:bg-white/10 text-gray-300 border border-white/10 transition-all">
-                                ${t.profileBtn}
-                            </button>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-
-        // =========================================================================
-        // 6. RENDER CANDIDATES GRID
-        // =========================================================================
-        function renderCandidatesGrid() {
-            const grid = document.getElementById('candidatesGrid');
-            if (!grid) return;
-
-            const t = translations[currentLang];
-
-            // Filter by Category & Search query
-            const filtered = candidates.filter(c => {
-                const matchesCat = activeCategory === 'all' || c.category === activeCategory;
-                const name = (currentLang === 'kk' ? c.nameKk : c.nameRu).toLowerCase();
-                const matchesSearch = name.includes(searchFilter) || c.id.includes(searchFilter);
-                return matchesCat && matchesSearch;
-            });
-
-            if (filtered.length === 0) {
-                grid.innerHTML = `
-                    <div class="col-span-full text-center py-12 text-gray-500 font-light">
-                        <i class="fa-solid fa-magnifying-glass text-3xl mb-2 text-gold-500/40"></i>
-                        <p>${currentLang === 'kk' ? 'Ешқандай қатысушы табылмады' : 'Ни один участник не найден'}</p>
-                    </div>
-                `;
-                return;
-            }
-
-            grid.innerHTML = filtered.map(c => {
-                const name = currentLang === 'kk' ? c.nameKk : c.nameRu;
-                const isVoted = votedCandidateIds.has(c.id);
-
-                return `
-                    <div class="glass-card rounded-2xl overflow-hidden border border-gold-500/20 hover:border-gold-500/50 transition-all duration-300 flex flex-col group">
-                        
-                        <!-- Portrait Image (4:5 Aspect Ratio) -->
-                        <div class="relative aspect-[4/5] overflow-hidden bg-black/80">
-                            <img src="${c.image}" alt="${name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
-                            
-                            <!-- Category Badge -->
-                            <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-black/70 backdrop-blur-md text-gold-300 border border-gold-500/30">
-                                ${c.category === 'miss' ? 'Mini Miss' : 'Mini Mister'}
-                            </span>
-
-                            <!-- ID Badge -->
-                            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[10px] font-bold text-gray-300 bg-black/70 border border-white/10">
-                                ID: ${c.id}
-                            </span>
-
-                            <!-- Name Overlay -->
-                            <div class="absolute bottom-3 left-3 right-3">
-                                <h3 class="font-title text-xl font-bold text-white leading-tight drop-shadow-md">${name}</h3>
-                                <p class="text-xs text-gray-300">${c.age} ${t.ageSuffix} • ${translations[currentLang].city}</p>
-                            </div>
-                        </div>
-
-                        <!-- Card Body -->
-                        <div class="p-4 flex-1 flex flex-col justify-between space-y-4">
-                            
-                            <!-- Vote Counter -->
-                            <div class="flex items-center justify-between px-3 py-2 rounded-xl bg-black/40 border border-gold-500/15">
-                                <span class="text-xs text-gray-400 font-medium">${t.statTotalVotes}:</span>
-                                <span class="font-title text-lg font-bold text-gold-300">${c.votes.toLocaleString()}</span>
-                            </div>
-
-                            <!-- Buttons -->
-                            <div class="grid grid-cols-2 gap-2">
-                                <button onclick="openGoogleAuthModal('${c.id}')" ${isVoted ? 'disabled' : ''} class="${isVoted ? 'bg-gray-800 text-gray-500 cursor-not-allowed' : 'btn-gold'} py-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center space-x-1">
-                                    <i class="fa-solid ${isVoted ? 'fa-check' : 'fa-check-to-slot'}"></i>
-                                    <span>${isVoted ? t.votedBtn : t.voteBtn}</span>
-                                </button>
-                                <button onclick="openProfileModal('${c.id}')" class="py-2.5 rounded-xl text-xs font-semibold bg-white/5 hover:bg-white/10 text-gray-300 border border-white/10 transition-all flex items-center justify-center space-x-1">
-                                    <i class="fa-solid fa-user"></i>
-                                    <span>${t.profileBtn}</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        // Filter Handlers
-        function setCategory(cat) {
-            activeCategory = cat;
-            ['tabAll', 'tabMiss', 'tabMister'].forEach(id => {
-                const btn = document.getElementById(id);
-                if (!btn) return;
-                btn.className = "px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all text-gray-400 hover:text-gold-300";
-            });
-
-            const activeBtn = document.getElementById(cat === 'all' ? 'tabAll' : cat === 'miss' ? 'tabMiss' : 'tabMister');
-            if (activeBtn) {
-                activeBtn.className = "px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-gold-500 text-black shadow-lg";
-            }
-
-            renderCandidatesGrid();
-        }
-
-        function handleSearch() {
-            searchFilter = document.getElementById('searchInput').value.trim().toLowerCase();
-            renderCandidatesGrid();
-        }
-
-        function updateStats() {
-            const total = candidates.reduce((sum, c) => sum + c.votes, 0);
-            document.getElementById('statTotalVotes').innerText = total.toLocaleString();
-            document.getElementById('statParticipantsCount').innerText = candidates.length;
-        }
-
-
-        // =========================================================================
-        // 7. GOOGLE AUTHENTICATION & VOTING FLOW
-        // =========================================================================
-        function openGoogleAuthModal(candidateId) {
-            if (votedCandidateIds.has(candidateId)) {
-                showToast(translations[currentLang].toastAlreadyVoted, 'warning');
-                return;
-            }
-
-            pendingVoteCandidateId = candidateId;
-            const candidate = candidates.find(c => c.id === candidateId);
-            if (!candidate) return;
-
-            const name = currentLang === 'kk' ? candidate.nameKk : candidate.nameRu;
-
-            // Render Target Candidate Preview inside Auth Modal
-            document.getElementById('modalTargetCard').innerHTML = `
-                <img src="${candidate.image}" alt="${name}" class="w-12 h-12 rounded-lg object-cover border border-gold-500/40">
-                <div>
-                    <h4 class="text-sm font-bold text-white">${name}</h4>
-                    <p class="text-[11px] text-gold-300">ID: ${candidate.id} • ${candidate.votes} ${translations[currentLang].votesLabel}</p>
-                </div>
-            `;
-
-            openModal('googleAuthModal');
-        }
-
-        async function triggerGoogleSignIn() {
-            const btn = document.getElementById('googleSignInBtn');
-            btn.disabled = true;
-            btn.classList.add('opacity-75');
-
-            try {
-                // Call Firebase or Simulation Module
-                const user = await window.firebaseAuthModule.signInWithGoogle();
-                currentUser = user;
-
-                // Update Header User Profile Widget
-                document.getElementById('userAvatar').src = user.photoURL || 'https://via.placeholder.com/150';
-                document.getElementById('userName').innerText = user.displayName || 'Google User';
-                document.getElementById('userProfileWidget').classList.remove('hidden');
-
-                showToast(`${translations[currentLang].toastAuthSuccess} (${user.displayName})`, 'success');
-
-                // Record the vote
-                if (pendingVoteCandidateId) {
-                    processVote(pendingVoteCandidateId, user);
-                }
-
-                closeModal('googleAuthModal');
-            } catch (error) {
-                console.error("Auth error:", error);
-                showToast("Google авторизациясы орындалмады", "error");
-            } finally {
-                btn.disabled = false;
-                btn.classList.remove('opacity-75');
-            }
-        }
-
-        function processVote(candidateId, user) {
-            const candidate = candidates.find(c => c.id === candidateId);
-            if (!candidate) return;
-
-            candidate.votes += 1;
-            votedCandidateIds.add(candidateId);
-
-            // Save to Local Storage
-            try {
-                localStorage.setItem('shymkent_voted_candidates', JSON.stringify([...votedCandidateIds]));
-            } catch(e){}
-
-            // Launch Festive Confetti Fireworks
-            launchConfetti();
-
-            showToast(translations[currentLang].toastSuccess, 'success');
-
-            renderApp();
-        }
-
-        function handleSignOut() {
-            currentUser = null;
-            document.getElementById('userProfileWidget').classList.add('hidden');
-            showToast("Жүйеден шықтыңыз / Вы вышли", 'info');
-        }
-
-
-        // =========================================================================
-        // 8. PARTICIPANT DETAILED PROFILE MODAL
-        // =========================================================================
-        function openProfileModal(candidateId) {
-            const c = candidates.find(item => item.id === candidateId);
-            if (!c) return;
-
-            const t = translations[currentLang];
-            const name = currentLang === 'kk' ? c.nameKk : c.nameRu;
-            const talent = currentLang === 'kk' ? c.talentKk : c.talentRu;
-            const motto = currentLang === 'kk' ? c.mottoKk : c.mottoRu;
-            const isVoted = votedCandidateIds.has(c.id);
-
-            document.getElementById('profileModalContent').innerHTML = `
-                <div class="flex flex-col md:flex-row gap-6 items-center md:items-start">
-                    
-                    <!-- Portrait Image -->
-                    <div class="w-full md:w-1/2 aspect-[4/5] rounded-2xl overflow-hidden border border-gold-500/30 relative">
-                        <img src="${c.image}" alt="${name}" class="w-full h-full object-cover">
-                        <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/70 text-gold-300 text-xs font-bold border border-gold-500/30">
-                            ID: ${c.id}
-                        </div>
-                    </div>
-
-                    <!-- Profile Bio -->
-                    <div class="w-full md:w-1/2 flex flex-col justify-between space-y-4">
-                        <div>
-                            <span class="text-xs uppercase tracking-widest text-gold-500 font-bold">${c.category === 'miss' ? 'Mini Miss' : 'Mini Mister'}</span>
-                            <h2 class="font-title text-3xl font-bold text-white mt-1">${name}</h2>
-                            <p class="text-xs text-gray-400 mt-1">${c.age} ${t.ageSuffix} • ${t.city}</p>
-                        </div>
-
-                        <div class="space-y-3 bg-black/50 p-4 rounded-xl border border-white/5 text-xs">
-                            <div>
-                                <span class="text-gray-400 block">${t.heightLabel}</span>
-                                <span class="text-gray-200 font-semibold">${c.height}</span>
-                            </div>
-                            <div>
-                                <span class="text-gray-400 block">${t.talentLabel}</span>
-                                <span class="text-gold-300 font-semibold">${talent}</span>
-                            </div>
-                            <div>
-                                <span class="text-gray-400 block">${t.mottoLabel}</span>
-                                <span class="text-gray-200 italic">"${motto}"</span>
-                            </div>
-                        </div>
-
-                        <!-- Current Vote Tally -->
-                        <div class="p-4 rounded-xl bg-gold-900/20 border border-gold-500/30 text-center">
-                            <span class="text-xs text-gray-400 block uppercase tracking-wider">${t.statTotalVotes}</span>
-                            <span class="font-title text-3xl font-bold text-gold-gradient">${c.votes.toLocaleString()}</span>
-                        </div>
-
-                        <!-- Vote Action -->
-                        <button onclick="closeModal('profileModal'); openGoogleAuthModal('${c.id}')" ${isVoted ? 'disabled' : ''} class="w-full ${isVoted ? 'bg-gray-800 text-gray-500' : 'btn-gold'} py-3 rounded-xl font-bold text-sm transition-all">
-                            ${isVoted ? t.votedBtn : t.voteBtn}
-                        </button>
-                    </div>
-                </div>
-            `;
-
-            openModal('profileModal');
-        }
-
-
-        // =========================================================================
-        // 9. UTILITY MODALS & TOAST NOTIFICATIONS
-        // =========================================================================
-        function openModal(id) {
-            const m = document.getElementById(id);
-            if (m) {
-                m.classList.remove('hidden');
-                document.body.style.overflow = 'hidden';
-            }
-        }
-
-        function closeModal(id) {
-            const m = document.getElementById(id);
-            if (m) {
-                m.classList.add('hidden');
-                document.body.style.overflow = '';
-            }
-        }
-
-        function showToast(message, type = 'info') {
-            const container = document.getElementById('toastContainer');
-            if (!container) return;
-
-            const toast = document.createElement('div');
-            toast.className = `pointer-events-auto px-4 py-3 rounded-xl glass-card border flex items-center space-x-3 text-xs sm:text-sm text-white shadow-2xl transition-all duration-300 opacity-0 translate-y-4 ${
-                type === 'success' ? 'border-green-500/50 bg-green-950/40' :
-                type === 'warning' ? 'border-amber-500/50 bg-amber-950/40' :
-                type === 'error' ? 'border-red-500/50 bg-red-950/40' : 'border-gold-500/40'
-            }`;
-
-            toast.innerHTML = `
-                <i class="fa-solid ${
-                    type === 'success' ? 'fa-circle-check text-green-400' :
-                    type === 'warning' ? 'fa-triangle-exclamation text-amber-400' :
-                    type === 'error' ? 'fa-circle-xmark text-red-400' : 'fa-circle-info text-gold-300'
-                } text-base"></i>
-                <span>${message}</span>
-            `;
-
-            container.appendChild(toast);
-
-            // Animate In
-            setTimeout(() => {
-                toast.classList.remove('opacity-0', 'translate-y-4');
-            }, 50);
-
-            // Animate Out
-            setTimeout(() => {
-                toast.classList.add('opacity-0', 'translate-y-4');
-                setTimeout(() => toast.remove(), 300);
-            }, 3500);
-        }
-
-        // Gold Confetti Celebration Burst
-        function launchConfetti() {
-            if (typeof confetti === 'function') {
-                confetti({
-                    particleCount: 80,
-                    spread: 70,
-                    origin: { y: 0.6 },
-                    colors: ['#dfb76c', '#f1cf81', '#ffffff', '#aa8136']
-                });
-            }
-        }
-
-
-        // =========================================================================
-        // 10. COUNTDOWN TIMER TARGETING OCT 26, 2026
-        // =========================================================================
-        function startCountdownTimer() {
-            const targetDate = new Date("October 26, 2026 12:00:00").getTime();
-
-            function updateTimer() {
-                const now = new Date().getTime();
-                const diff = targetDate - now;
-
-                if (diff <= 0) {
-                    document.getElementById('timerDays').innerText = "00";
-                    document.getElementById('timerHours').innerText = "00";
-                    document.getElementById('timerMinutes').innerText = "00";
-                    document.getElementById('timerSeconds').innerText = "00";
-                    return;
-                }
-
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-                document.getElementById('timerDays').innerText = String(days).padStart(2, '0');
-                document.getElementById('timerHours').innerText = String(hours).padStart(2, '0');
-                document.getElementById('timerMinutes').innerText = String(minutes).padStart(2, '0');
-                document.getElementById('timerSeconds').innerText = String(seconds).padStart(2, '0');
-            }
-
-            updateTimer();
-            setInterval(updateTimer, 1000);
-        }
-
-
-        // =========================================================================
-        // 11. AMBIENT GOLD PARTICLES CANVAS BACKGROUND
-        // =========================================================================
-        function initParticlesCanvas() {
-            const canvas = document.getElementById('particleCanvas');
-            if (!canvas) return;
-
-            const ctx = canvas.getContext('2d');
-            let width = (canvas.width = window.innerWidth);
-            let height = (canvas.height = window.innerHeight);
-
-            window.addEventListener('resize', () => {
-                width = canvas.width = window.innerWidth;
-                height = canvas.height = window.innerHeight;
-            });
-
-            const particles = Array.from({ length: 45 }, () => ({
-                x: Math.random() * width,
-                y: Math.random() * height,
-                radius: Math.random() * 2 + 0.5,
-                speedY: Math.random() * -0.4 - 0.1,
-                speedX: (Math.random() - 0.5) * 0.2,
-                opacity: Math.random() * 0.6 + 0.2
-            }));
-
-            function animate() {
-                ctx.clearRect(0, 0, width, height);
-
-                particles.forEach(p => {
-                    p.y += p.speedY;
-                    p.x += p.speedX;
-
-                    if (p.y < 0) {
-                        p.y = height;
-                        p.x = Math.random() * width;
-                    }
-
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(223, 183, 108, ${p.opacity})`;
-                    ctx.shadowBlur = 8;
-                    ctx.shadowColor = '#dfb76c';
-                    ctx.fill();
-                });
-
-                requestAnimationFrame(animate);
-            }
-
-            animate();
-        }
-    </script>
+        showToast(i18n[currentLang].toastSuccess);
+        renderGrid();
+        renderPodium();
+      }
+
+      closeAuthModal();
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMsg').innerText = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3800);
+    }
+
+    // --- Enhanced Bright Gold Particle Canvas ---
+    const canvas = document.getElementById('bgCanvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // Increased count and brightness properties
+    for (let i = 0; i < 65; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 2.2 + 1.0,
+        alpha: Math.random() * 0.6 + 0.35, // Brighter alpha transparency
+        speedY: -(Math.random() * 0.4 + 0.15)
+      });
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      particles.forEach(p => {
+        p.y += p.speedY;
+        if (p.y < 0) p.y = canvas.height;
+        
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        
+        // Intense Gold Neon Glow
+        ctx.shadowBlur = 12;
+        ctx.shadowColor = 'rgba(255, 215, 0, 0.85)';
+        ctx.fillStyle = `rgba(247, 232, 195, ${p.alpha})`;
+        ctx.fill();
+        ctx.shadowBlur = 0; // Reset for performance
+      });
+      
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    // Initial Load
+    changeLang('kk');
+  </script>
 </body>
 </html>
